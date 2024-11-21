@@ -3,10 +3,6 @@ repos:
     hooks:
       - id: trufflehog
         name: TruffleHog
-        description: Detect secrets in your data.
-        #entry: bash -c 'trufflehog git file://. --fail'
-        #entry: bash -c 'trufflehog git file://. '
-        # For running trufflehog in docker, use the following entry instead:
-         entry: bash -c 'docker run --rm -v "$(pwd)://home/devops/Downloads/juice-shop-master" -i --rm trufflesecurity/trufflehog:latest git file:////home/devops/Downloads/juice-shop-master --since-commit HEAD --only-verified --fail'
+        sudo docker run --platform linux/amd64 -it -v "$PWD:/pwd" trufflesecurity/trufflehog:latest git https://github.com/sudo-abhish3k/juice-shop
         language: system
         stages: ["commit", "push"]
